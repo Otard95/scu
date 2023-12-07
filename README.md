@@ -72,8 +72,12 @@ typedef struct {
 
 #### Functions
 
-| Signature                                                                    | Description                                           |
-|------------------------------------------------------------------------------|-------------------------------------------------------|
-| `bool scu_sb_append(Scu_String_Builder *sb, const char *str, size_t length)` | Appends `length` characters from `str` to the builder |
+| Signature                                                                    | Description                                                            |
+|------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `bool scu_sb_append(Scu_String_Builder *sb, const char *str, size_t length)` | Appends `length` characters from `str` to the builder                  |
+| `bool scu_sb_append_cstr(Scu_String_Builder *sb, const char *str)`           | Appends c-string to the builder without the null terninated            |
+| `bool scu_sb_append_char(Scu_String_Builder *sb, char c)`                    | Appends a single char to the builder                                   |
+| `char *scu_sb_to_cstr(Scu_String_Builder *sb)`                               | Makes sure the its buffer is null terminated and returns ptr to buffer |
+| `void scu_sb_free(Scu_String_Builder *sb)`                                   | Frees the internal buffer                                              |
 
 </details>
