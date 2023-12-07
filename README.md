@@ -72,8 +72,8 @@ typedef struct {
 
 #### Functions
 
-| Name            | Signature                                                                    | Description                                               |
-|-----------------|------------------------------------------------------------------------------|-----------------------------------------------------------|
-| `scu_sb_append` | `bool scu_sb_append(Scu_String_Builder *sb, const char *str, size_t length)` | Appends `length` characters from `str` to the builder |
+| Signature                                                                    | Description                                           |
+|------------------------------------------------------------------------------|-------------------------------------------------------|
+| `bool scu_sb_append(Scu_String_Builder *sb, const char *str, size_t length)` | Appends `length` characters from `str` to the builder |
 
 </details>
