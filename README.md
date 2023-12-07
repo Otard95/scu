@@ -31,7 +31,11 @@ If you where to edit `nob.c` it will rebuild itself when running `./nob`.
 ## Utilities
 
 <details>
-<summary>String Builder</summary>
+<summary>
+
+### String Builder
+
+</summary>
 
 The string builder is in a sense a dynamic array of chars.
 It manages its own memory in the `.buf` field, and can be consered to own the
@@ -66,7 +70,7 @@ typedef struct {
 </tr>
 </table>
 
-### Functions
+#### Functions
 
 | Name            | Signature                                                                    | Description                                               |
 |-----------------|------------------------------------------------------------------------------|-----------------------------------------------------------|
