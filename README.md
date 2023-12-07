@@ -81,3 +81,54 @@ typedef struct {
 | `void scu_sb_free(Scu_String_Builder *sb)`                                   | Frees the internal buffer                                              |
 
 </details>
+
+<details>
+<summary>
+
+### String View
+
+</summary>
+
+The string view is a structure that represents a view into a string. It does
+not 'own' the memory in its `.buf` field, and has no capasity, only a `.len`.
+
+Since the string view is such a lightweight structure and it doesn't won the
+memory in its buffer, most of its functions are pure and returns a new string
+view instead of modifying the original.
+
+<table>
+<tr>
+<td>Implementation def</td>
+<td>Struct</td>
+</tr>
+<tr>
+<td>
+
+`SCU_SV_IMPLEMENTATION`
+
+</td>
+<td>
+
+```c
+typedef struct {
+  const char *buf;
+  size_t len;
+} Scu_String_View;
+```
+
+</td>
+</tr>
+</table>
+
+#### Functions
+
+| Signature                                                                     | Description                                               | Pure |
+|-------------------------------------------------------------------------------|-----------------------------------------------------------|:----:|
+| `Scu_String_View scu_sv_from_cstr(const char *str)`                           | Creates a string view into a c-string                     |  ✅  |
+| `Scu_String_View scu_sv_from_buffer(const char *buffer, const size_t length)` | Created a string view into a buffer of a given size       |  ✅  |
+| `bool scu_sv_eq(const Scu_String_View sv1, const Scu_String_View sv2)`        | Checs if two string views are equal                       |  ✅  |
+| `Scu_String_View scu_sv_trim_right(const Scu_String_View sv)`                 | Trims whitespace from the right in a string view          |  ✅  |
+| `Scu_String_View scu_sv_trim_left(const Scu_String_View sv)`                  | Trims whitespace from the left in a string view           |  ✅  |
+| `Scu_String_View scu_sv_trim(const Scu_String_View sv)`                       | Trims whitespace from the left and right in a string view |  ✅  |
+
+</details>
