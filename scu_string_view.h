@@ -11,12 +11,12 @@ typedef struct {
 
 // Constructors
 Scu_String_View scu_sv_from_cstr(const char *str);
-Scu_String_View scu_sv_from_buffer(const char *buffer, size_t length);
+Scu_String_View scu_sv_from_buffer(const char *buffer, const size_t length);
 
-bool scu_sv_eq(Scu_String_View sv1, Scu_String_View sv2);
-Scu_String_View scu_sv_trim_right(Scu_String_View sv);
-Scu_String_View scu_sv_trim_left(Scu_String_View sv);
-Scu_String_View scu_sv_trim(Scu_String_View sv);
+bool scu_sv_eq(const Scu_String_View sv1, const Scu_String_View sv2);
+Scu_String_View scu_sv_trim_right(const Scu_String_View sv);
+Scu_String_View scu_sv_trim_left(const Scu_String_View sv);
+Scu_String_View scu_sv_trim(const Scu_String_View sv);
 
 #endif // SCU_STRING_VIEW_H
 
