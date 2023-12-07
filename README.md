@@ -27,3 +27,49 @@ $ ./nob
 
 This will build and run all the tests provided in the `./tests` directory.
 If you where to edit `nob.c` it will rebuild itself when running `./nob`.
+
+## Utilities
+
+<details>
+<summary>String Builder</summary>
+
+The string builder is in a sense a dynamic array of chars.
+It manages its own memory in the `.buf` field, and can be consered to own the
+memory.
+
+It allows for the user to supply their own memory allocation functions.
+Specifically `malloc`, `realloc` and `free` via the `SCU_SB_MALLOC`,
+`SCU_SB_REALLOC` and `SCU_SB_FRE` macros respectively.
+
+<table>
+<tr>
+<td>Implementation def</td>
+<td>Struct</td>
+</tr>
+<tr>
+<td>
+
+`SCU_SB_IMPLEMENTATION`
+
+</td>
+<td>
+
+```c
+typedef struct {
+  char *buf;
+  size_t len;
+  size_t capacity;
+} Scu_String_Builder;
+```
+
+</td>
+</tr>
+</table>
+
+### Functions
+
+| Name            | Signature                                                                    | Description                                               |
+|-----------------|------------------------------------------------------------------------------|-----------------------------------------------------------|
+| `scu_sb_append` | `bool scu_sb_append(Scu_String_Builder *sb, const char *str, size_t length)` | Appends a `length` characters from `str` into the builder |
+
+</details>
