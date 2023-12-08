@@ -130,5 +130,6 @@ typedef struct {
 | `Scu_String_View scu_sv_trim_right(const Scu_String_View sv)`                 | Trims whitespace from the right in a string view          |  ✅  |
 | `Scu_String_View scu_sv_trim_left(const Scu_String_View sv)`                  | Trims whitespace from the left in a string view           |  ✅  |
 | `Scu_String_View scu_sv_trim(const Scu_String_View sv)`                       | Trims whitespace from the left and right in a string view |  ✅  |
+| `Scu_String_View scu_sv_chop_by_delim(Scu_String_View *sv, const char delim)` | Return a new SV containing `sv` up until the first `delim` remove evetyting before and including the fist `delim` from `sv` | ✅ |
 
 </details>

@@ -92,6 +92,50 @@ START_TEST(string_view_trim)
   ck_assert_int_eq(sv2_trimmed.len, 5);
 }
 
+START_TEST(string_view_chop_by_delim)
+{
+  Scu_String_View sv1 = scu_sv_from_cstr("hello world");
+  Scu_String_View sv1_chopped = scu_sv_chop_by_delim(&sv1, ' ');
+
+  ck_assert(memcmp(sv1_chopped.buf, "hello", 5) == 0);
+  ck_assert_int_eq(sv1_chopped.len, 5);
+  ck_assert(memcmp(sv1.buf, "world", 5) == 0);
+  ck_assert_int_eq(sv1.len, 5);
+
+  Scu_String_View sv2 = scu_sv_from_cstr("hello world");
+  Scu_String_View sv2_chopped = scu_sv_chop_by_delim(&sv2, 'o');
+
+  ck_assert(memcmp(sv2_chopped.buf, "hell", 4) == 0);
+  ck_assert_int_eq(sv2_chopped.len, 4);
+  ck_assert(memcmp(sv2.buf, " world", 6) == 0);
+  ck_assert_int_eq(sv2.len, 6);
+
+  Scu_String_View sv3 = scu_sv_from_cstr("hello world");
+  Scu_String_View sv3_chopped = scu_sv_chop_by_delim(&sv3, 'h');
+
+  ck_assert(memcmp(sv3_chopped.buf, "", 0) == 0);
+  ck_assert_int_eq(sv3_chopped.len, 0);
+  ck_assert(memcmp(sv3.buf, "ello world", 10) == 0);
+  ck_assert_int_eq(sv3.len, 10);
+
+  Scu_String_View sv4 = scu_sv_from_cstr("hello world");
+  Scu_String_View sv4_chopped = scu_sv_chop_by_delim(&sv4, 'd');
+
+  ck_assert(memcmp(sv4_chopped.buf, "hello worl", 10) == 0);
+  ck_assert_int_eq(sv4_chopped.len, 10);
+  ck_assert(memcmp(sv4.buf, "", 0) == 0);
+  ck_assert_int_eq(sv4.len, 0);
+
+  Scu_String_View sv5 = scu_sv_from_cstr("hello world");
+  Scu_String_View sv5_chopped = scu_sv_chop_by_delim(&sv5, 'z');
+
+  ck_assert(memcmp(sv5_chopped.buf, "hello world", 11) == 0);
+  ck_assert_int_eq(sv5_chopped.len, 11);
+  ck_assert(memcmp(sv5.buf, "", 0) == 0);
+  ck_assert_int_eq(sv5.len, -1);
+}
+END_TEST
+
 Suite * string_view_suite(void)
 {
     Suite *s;
@@ -109,6 +153,7 @@ Suite * string_view_suite(void)
     tcase_add_test(tc_core, string_view_trim_right);
     tcase_add_test(tc_core, string_view_trim_left);
     tcase_add_test(tc_core, string_view_trim);
+    tcase_add_test(tc_core, string_view_chop_by_delim);
     suite_add_tcase(s, tc_core);
 
     return s;

@@ -9,6 +9,10 @@ typedef struct {
   size_t len;
 } Scu_String_View;
 
+// String_View format string and argument macros
+#define SCU_SV_Fmt "%.*s"
+#define SCU_SV_Arg(sv) (int)(sv).len, (sv).buf
+
 // Constructors
 Scu_String_View scu_sv_from_cstr(const char *str);
 Scu_String_View scu_sv_from_buffer(const char *buffer, const size_t length);
@@ -17,6 +21,7 @@ bool scu_sv_eq(const Scu_String_View sv1, const Scu_String_View sv2);
 Scu_String_View scu_sv_trim_right(const Scu_String_View sv);
 Scu_String_View scu_sv_trim_left(const Scu_String_View sv);
 Scu_String_View scu_sv_trim(const Scu_String_View sv);
+Scu_String_View scu_sv_chop_by_delim(Scu_String_View *sv, const char delim);
 
 #endif // SCU_STRING_VIEW_H
 
@@ -70,6 +75,19 @@ Scu_String_View scu_sv_trim_left(Scu_String_View sv) {
 
 Scu_String_View scu_sv_trim(Scu_String_View sv) {
   return scu_sv_trim_left(scu_sv_trim_right(sv));
+}
+
+Scu_String_View scu_sv_chop_by_delim(Scu_String_View *sv, const char delim) {
+  Scu_String_View sv_out = {0};
+  size_t i = 0;
+  while (i < sv->len && sv->buf[i] != delim) {
+    i++;
+  }
+  sv_out.buf = sv->buf;
+  sv_out.len = i;
+  sv->buf += i + 1;
+  sv->len -= i + 1;
+  return sv_out;
 }
 
 #endif
